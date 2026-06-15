@@ -1,0 +1,1361 @@
+
+Nova studio landing · HTML
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="imagenes/Recurso 5.png">
+<title>Nova Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --navy:        #021443;
+    --navy-deep:   #010e30;
+    --navy-mid:    #041d5c;
+    --navy-light:  #082580;
+    --surface:     #052070;
+    --surface-2:   #031660;
+    --border:      rgba(254,253,253,0.10);
+    --border-hover:rgba(254,253,253,0.22);
+    --gold:        #f29206;
+    --gold-light:  #f7aa30;
+    --gold-dim:    rgba(242,146,6,0.14);
+    --white:       #fefdfd;
+    --off-white:   #e8eaf2;
+    --gray:        #8a93b8;
+    --gray-light:  #b8bdd6;
+    --font-main:   'Jost', 'Futura Md BT', 'Futura', Century Gothic, sans-serif;
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background: var(--navy);
+    color: var(--off-white);
+    font-family: var(--font-main);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+ 
+  ::selection { background: var(--gold); color: var(--navy); }
+ 
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 5vw;
+    border-bottom: 1px solid var(--border);
+    background: rgba(2,20,67,0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+ 
+  .nav-logo {
+    font-family: var(--font-main);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+ 
+  .nav-logo span { color: var(--gold); }
+ 
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+ 
+  .nav-links a {
+    color: var(--gray-light);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+ 
+  .nav-links a:hover { color: var(--white); }
+ 
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    padding: 0.5rem 1.35rem !important;
+    border-radius: 2px;
+    font-weight: 700 !important;
+    transition: background 0.2s !important;
+  }
+ 
+  .nav-cta:hover { background: var(--gold-light) !important; }
+ 
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 5vw 5vh;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--navy-deep);
+  }
+ 
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(254,253,253,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(254,253,253,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+ 
+  .hero-glow {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,146,6,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+ 
+  .hero-glow-2 {
+    position: absolute;
+    bottom: -30%;
+    left: -15%;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(4,29,92,0.7) 0%, transparent 70%);
+    pointer-events: none;
+  }
+ 
+  /* HERO MEDIA */
+  .hero-media {
+    position: absolute;
+    top: 0; right: 0;
+    width: 48%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .hero-media video,
+  .hero-media img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .hero-media::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(2,20,67,0.3);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--navy-deep) 0%, rgba(1,14,48,0.65) 28%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+ 
+  .hero-tag {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-main);
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+ 
+  .hero-headline {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(3rem, 9vw, 8.5rem);
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+  }
+ 
+  .hero-headline em {
+    font-style: normal;
+    color: var(--gold);
+  }
+ 
+  .hero-bottom {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+ 
+  .hero-desc {
+    max-width: 400px;
+    color: var(--gray-light);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+ 
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-shrink: 0;
+  }
+ 
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 0.9rem 2rem;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+ 
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+ 
+  .btn-ghost {
+    background: transparent;
+    color: var(--gray-light);
+    padding: 0.9rem 1.5rem;
+    font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+ 
+  .btn-ghost:hover { border-color: var(--border-hover); color: var(--white); }
+ 
+  /* MARQUEE */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+    background: var(--navy-deep);
+  }
+ 
+  .marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 22s linear infinite;
+    width: max-content;
+  }
+ 
+  .marquee-item {
+    font-family: var(--font-main);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 500;
+  }
+ 
+  .marquee-dot { color: var(--gold); font-size: 1.2rem; line-height: 1; }
+ 
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+ 
+  /* SECTIONS */
+  section { padding: 8rem 5vw; }
+ 
+  .section-label {
+    font-family: var(--font-main);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+ 
+  .section-title {
+    font-size: clamp(2rem, 4.5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: 0em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+ 
+  .section-sub {
+    color: var(--gray-light);
+    font-size: 1rem;
+    max-width: 520px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+ 
+  /* SERVICIOS */
+  #servicios { background: var(--navy-deep); }
+ 
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+ 
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+  }
+ 
+  .service-card {
+    background: var(--navy-deep);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+ 
+  .service-card:hover { background: var(--navy-mid); }
+  .service-card:hover .service-num { color: var(--gold); }
+ 
+  .service-num {
+    font-family: var(--font-main);
+    font-size: 0.65rem;
+    color: var(--gray);
+    letter-spacing: 0.14em;
+    margin-bottom: 2rem;
+    transition: color 0.3s;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+ 
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    display: block;
+    color: var(--gold);
+  }
+ 
+  .service-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+ 
+  .service-desc {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+ 
+  .service-arrow {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    font-size: 1.2rem;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: translate(-4px, 4px);
+  }
+ 
+  .service-card:hover .service-arrow { opacity: 1; transform: translate(0,0); }
+
+  /* NOSOTROS */
+  #nosotros {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-visual { position: relative; }
+
+  .about-frame {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-frame-inner {
+    position: absolute;
+    inset: 2rem;
+    border: 1px solid var(--border-hover);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-monogram {
+    font-family: var(--font-main);
+    font-size: 8rem;
+    font-weight: 700;
+    color: var(--surface-2);
+    letter-spacing: 0.05em;
+    line-height: 1;
+    user-select: none;
+    text-transform: uppercase;
+  }
+
+  .about-accent {
+    position: absolute;
+    bottom: -1px;
+    left: -1px;
+    width: 60%;
+    height: 4px;
+    background: var(--gold);
+  }
+
+  .about-badge {
+    position: absolute;
+    top: 2rem;
+    right: -1.5rem;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 1rem 1.25rem;
+    font-family: var(--font-main);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .stat-block {
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+  }
+
+  .stat-num {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-num span { color: var(--gold); }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* PORTAFOLIO */
+  #portafolio { background: var(--navy-deep); }
+
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(2, 280px);
+    gap: 1.5px;
+    background: var(--border);
+  }
+
+  .portfolio-item {
+    background: var(--navy-mid);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .portfolio-item:nth-child(1) { grid-column: span 7; }
+  .portfolio-item:nth-child(2) { grid-column: span 5; }
+  .portfolio-item:nth-child(3) { grid-column: span 4; }
+  .portfolio-item:nth-child(4) { grid-column: span 8; }
+
+  .portfolio-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(2,20,67,0.92) 0%, transparent 60%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .portfolio-item:hover::before { opacity: 1; }
+
+  .portfolio-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-main);
+    font-size: 0.68rem;
+    color: var(--gray);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .portfolio-item:nth-child(1) .portfolio-placeholder { background: #030f36; }
+  .portfolio-item:nth-child(2) .portfolio-placeholder { background: #031240; }
+  .portfolio-item:nth-child(3) .portfolio-placeholder { background: #041550; }
+  .portfolio-item:nth-child(4) .portfolio-placeholder { background: #020e30; }
+
+  .portfolio-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    z-index: 2;
+    transform: translateY(8px);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .portfolio-item:hover .portfolio-info { transform: translateY(0); opacity: 1; }
+
+  .portfolio-cat {
+    font-family: var(--font-main);
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+
+  .portfolio-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  /* CLIENTES */
+  #clientes { text-align: center; background: var(--navy); }
+
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    margin-top: 4rem;
+  }
+
+  .client-cell {
+    background: var(--navy-deep);
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-main);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .client-cell:hover { background: var(--navy-mid); color: var(--white); }
+
+  /* PROCESO */
+  #proceso { background: var(--navy-deep); }
+
+  .process-steps { margin-top: 5rem; }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 3rem 0;
+    border-top: 1px solid var(--border);
+    align-items: start;
+    transition: border-color 0.3s;
+  }
+
+  .process-step:hover { border-color: var(--gold); }
+  .process-step:last-child { border-bottom: 1px solid var(--border); }
+
+  .step-num {
+    font-family: var(--font-main);
+    font-size: 0.68rem;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    padding-top: 0.35rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .step-title {
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.01em;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .step-desc {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.75;
+    max-width: 560px;
+    font-weight: 300;
+  }
+
+  /* CONTACTO */
+  #contacto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    background: var(--navy);
+  }
+
+  .contact-headline {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0em;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .contact-headline em { font-style: normal; color: var(--gold); }
+
+  .contact-details {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+
+  .contact-item-label {
+    font-family: var(--font-main);
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding-top: 0.15rem;
+    min-width: 70px;
+    font-weight: 600;
+  }
+
+  .contact-item-val {
+    font-size: 0.95rem;
+    color: var(--gray-light);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .form-field { margin-bottom: 1.5rem; }
+
+  .form-field label {
+    display: block;
+    font-family: var(--font-main);
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+  }
+
+  .form-field input,
+  .form-field textarea,
+  .form-field select {
+    width: 100%;
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    color: var(--off-white);
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
+    outline: none;
+    border-radius: 2px;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+    font-weight: 300;
+  }
+
+  .form-field input:focus,
+  .form-field textarea:focus,
+  .form-field select:focus { border-color: var(--gold); }
+
+  .form-field textarea { height: 130px; resize: vertical; }
+  .form-field select { cursor: pointer; }
+  .form-field select option { background: var(--navy); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    background: var(--navy-deep);
+  }
+
+  .footer-logo {
+    font-family: var(--font-main);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: var(--gray);
+    font-family: var(--font-main);
+    letter-spacing: 0.06em;
+    font-weight: 400;
+  }
+
+  .footer-social { display: flex; gap: 1.5rem; }
+
+  .footer-social a {
+    font-family: var(--font-main);
+    font-size: 0.68rem;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+
+  .footer-social a:hover { color: var(--gold); }
+
+  /* HAMBURGER */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--off-white);
+    transition: all 0.2s;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+    .nav-links.nav-open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: rgba(2,20,67,0.97);
+      padding: 1.5rem 5vw;
+      gap: 1.5rem;
+      border-bottom: 1px solid rgba(254,253,253,0.10);
+      z-index: 99;
+    }
+    .nav-toggle { display: flex; }
+    #nosotros, #contacto { grid-template-columns: 1fr; gap: 3rem; }
+    .about-badge { right: 0; }
+    .portfolio-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .portfolio-item:nth-child(n) { grid-column: span 1; height: 220px; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; }
+    .services-header, .portfolio-header { flex-direction: column; align-items: flex-start; }
+    .services-grid { grid-template-columns: 1fr !important; }
+    .services-grid .service-card[style*="span 2"] { grid-column: span 1 !important; grid-template-columns: 1fr !important; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    section { padding: 5rem 5vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">NOVA<span> · </span>STUDIO</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#portafolio">Portafolio</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+  </div>
+ 
+    <!-- ▼ IMAGEN O VIDEO HERO — reemplaza src con tu archivo ▼ -->
+    <div class="hero-media">
+     <video autoplay muted loop playsinline>
+     <source src="imagenes/WhatsApp Video 2026-06-14 at 6.24.26 PM.mp4" type="video/mp4">
+    </video> <!-- OPCIÓN A: VIDEO (autoplay, loop, sin sonido) -->
+      <!--
+      <video autoplay muted loop playsinline>
+        <source src="tu-video.mp4" type="video/mp4">
+      </video>
+      -->
+ 
+      <!-- OPCIÓN B: FOTO -->
+      <!--
+      <img src="tu-foto.jpg" alt="Nova Studio">
+      -->
+ 
+      <!-- Placeholder visible hasta que agregues tu media -->
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#031660 0%,#010e30 100%);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:var(--font-main);font-size:0.68rem;color:rgba(254,253,253,0.2);letter-spacing:0.18em;text-transform:uppercase;">Tu video o foto aquí</span>
+      </div>
+    </div>
+  <p class="hero-tag">Estudio creativo — Barranquilla, Colombia</p>
+ 
+  <h1 class="hero-headline">
+    Diseño<br>
+    que<br>
+    <em>transforma.</em>
+  </h1>
+ 
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      Creamos identidades visuales, experiencias digitales y estrategias de marca que conectan con las personas y hacen crecer los negocios.
+    </p>
+    <div class="hero-actions">
+      <a href="#portafolio" class="btn-primary">Ver portafolio</a>
+      <a href="#contacto" class="btn-ghost">Contactar</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item"><span class="marquee-dot">·</span> Branding &amp; Identidad</span>
+    <span class="marquee-item"><span class="marquee-dot">·</span> Diseño Web &amp; Digital</span>
+    <span class="marquee-item"><span class="marquee-dot">·</span> Estrategia de Marca</span>
+    <span class="marquee-item"><span class="marquee-dot">·</span> Contenido Visual</span>
+    <span class="marquee-item"><span class="marquee-dot">·</span> Cubrimiento de Eventos</span>
+    <span class="marquee-item"><span class="marquee-dot">·</span> Nova Studio</span>
+    <span class="marquee-item"><span class="marquee-dot">·</span> Branding &amp; Identidad</span>
+    <span class="marquee-item"><span class="marquee-dot">·</span> Diseño Web &amp; Digital</span>
+    <span class="marquee-item"><span class="marquee-dot">·</span> Estrategia de Marca</span>
+    <span class="marquee-item"><span class="marquee-dot">·</span> Contenido Visual</span>
+    <span class="marquee-item"><span class="marquee-dot">·</span> Cubrimiento de Eventos</span>
+    <span class="marquee-item"><span class="marquee-dot">·</span> Nova Studio</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="services-header">
+    <div>
+      <p class="section-label">Lo que hacemos</p>
+      <h2 class="section-title">Servicios<br>creativos</h2>
+    </div>
+    <p class="section-sub">Desde la concepción hasta el lanzamiento, acompañamos cada etapa de la construcción de tu marca.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <p class="service-num">01</p>
+      <span class="service-icon">◈</span>
+      <h3 class="service-name">Branding &amp; Identidad</h3>
+      <p class="service-desc">Creamos marcas con carácter propio. Logotipos, sistemas de identidad, paletas y tipografía que te diferencian en el mercado.</p>
+      <span class="service-arrow">→</span>
+    </div>
+    <div class="service-card">
+      <p class="service-num">02</p>
+      <span class="service-icon">◻</span>
+      <h3 class="service-name">Diseño Web &amp; Digital</h3>
+      <p class="service-desc">Sitios web que convierten. Diseño UX/UI, landing pages y experiencias digitales pensadas para resultados reales.</p>
+      <span class="service-arrow">→</span>
+    </div>
+    <div class="service-card">
+      <p class="service-num">03</p>
+      <span class="service-icon">◎</span>
+      <h3 class="service-name">Estrategia de Marca</h3>
+      <p class="service-desc">Posicionamiento, voz y dirección estratégica para que tu marca tenga sentido, propósito y diferenciación.</p>
+      <span class="service-arrow">→</span>
+    </div>
+    <div class="service-card">
+      <p class="service-num">04</p>
+      <span class="service-icon">◇</span>
+      <h3 class="service-name">Contenido Visual</h3>
+      <p class="service-desc">Fotografía, motion graphics y piezas para redes sociales. Contenido que detiene el scroll y comunica tu esencia.</p>
+      <span class="service-arrow">→</span>
+    </div>
+    <div class="service-card" style="grid-column: span 2; display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center;">
+      <div>
+        <p class="service-num">05</p>
+        <span class="service-icon">△</span> 
+        <h3 class="service-name">Cubrimiento de Eventos</h3>
+        <p class="service-desc">Cobertura fotográfica y audiovisual profesional para eventos corporativos, lanzamientos, conciertos y activaciones de marca. Capturamos cada momento con la misma atención al detalle que ponemos en cada proyecto.</p>
+        <span class="service-arrow" style="position:static; opacity:1; margin-top:1.5rem; display:inline-block; color:var(--gold);">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="about-visual">
+    <div class="about-frame">
+    <div class="about-frame-inner" style="inset:0; padding:0;">
+      <img src="imagenes/PORTAFOLIO/dj.jpeg" alt="Nova Studio" style="width:100%; height:100%; object-fit:cover;"> <!-- CAMBIA LA IMAGEN -->
+    </div>
+      <div class="about-accent"></div>
+    </div>
+    <div class="about-badge">
+      Barranquilla<br>Colombia
+    </div>
+  </div>
+
+  <div class="about-text">
+    <p class="section-label">Quiénes somos</p>
+    <h2 class="section-title">Un estudio que piensa en grande</h2>
+    <p class="section-sub">
+      Nova Studio es un equipo de 2 amigos, estrategas y creativos apasionados por construir marcas que importan. Trabajamos con startups, empresas en crecimiento y marcas establecidas que quieren comunicar mejor.
+    </p>
+    <p class="section-sub" style="margin-top: 1.25rem;">
+      Creemos que el buen diseño no es un gasto, es una inversión. Cada proyecto lo abordamos con rigor estratégico y libertad creativa.
+    </p>
+
+    <div class="about-stats">
+      <div class="stat-block">
+        <div class="stat-num">80<span>+</span></div>
+        <div class="stat-label">Proyectos completados</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">4<span>+</span></div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">30<span>+</span></div>
+        <div class="stat-label">Clientes satisfechos</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">4<span>+</span></div>
+        <div class="stat-label">Industrias atendidas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTAFOLIO -->
+<section id="portafolio">
+  <div class="portfolio-header">
+    <div>
+      <p class="section-label">Trabajo selecto</p>
+      <h2 class="section-title">Portafolio</h2>
+    </div>
+    <a href="#contacto" class="btn-ghost">Ver todo el trabajo →</a>
+  </div>
+
+  <div class="portfolio-grid">
+    <div class="portfolio-item">
+      <img src="imagenes/PORTAFOLIO/image (3).png" alt="Proyecto destacado" style="width:100%; height:100%; object-fit:cover;">
+      <div class="portfolio-info">
+        <p class="portfolio-cat">Branding</p>
+        <p class="portfolio-title">Identidad de marca completa</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="imagenes/PORTAFOLIO/paginas-web.png" alt="Proyecto destacado" style="width:100%; height:100%; object-fit:cover;">
+      <div class="portfolio-info">
+        <p class="portfolio-cat">Diseño Web</p>
+        <p class="portfolio-title">E-commerce &amp; UX</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="imagenes/PORTAFOLIO/eventos.png" alt="Proyecto destacado" style="width:100%; height:100%; object-fit:cover;">
+      <div class="portfolio-info">
+        <p class="portfolio-cat">Cubrimiento de Eventos</p>
+        <p class="portfolio-title">Activación corporativa</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="imagenes/PORTAFOLIO/Contenido-visual.png" alt="Proyecto destacado" style="width:100%; height:100%; object-fit:cover;">
+      <div class="portfolio-info">
+        <p class="portfolio-cat">Contenido Visual</p>
+        <p class="portfolio-title">Campaña digital 360°</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTES -->
+<section id="clientes">
+  <p class="section-label">Confianza ganada</p>
+  <h2 class="section-title">Marcas que<br>han confiado en nosotros</h2>
+
+  <div class="clients-grid">
+    <div class="client-cell">
+    <img src="imagenes/CLIENTES/LOGO OS BLACO- SIN FONDO.png" alt="Cliente A" style="max-height:60px; max-width:120px; object-fit:contain; filter:brightness(0) invert(1); opacity:0.6; transition:opacity 0.2s;">
+    </div>
+    <div class="client-cell">
+    <img src="imagenes/CLIENTES/AXIA LOGO-04.png" alt="Cliente B" style="max-height:75px; max-width:160px; object-fit:contain; filter:brightness(0) invert(1); opacity:0.6; transition:opacity 0.2s;">
+    </div>
+    <div class="client-cell">
+    <img src="imagenes/CLIENTES/logo jm.png" alt="Cliente C" style="max-height:90px; max-width:120px; object-fit:contain; filter:brightness(0) invert(1); opacity:0.6; transition:opacity 0.2s;">
+    </div>
+    <div class="client-cell">
+    <img src="imagenes/CLIENTES/LOGO TRIXS.png" alt="Cliente D" style="max-height:60px; max-width:140px; object-fit:contain; filter:brightness(0) invert(1); opacity:0.6; transition:opacity 0.2s;">
+    </div>
+    <div class="client-cell">
+    <img src="imagenes/CLIENTES/logo exre.png" alt="Cliente E" style="max-height:60px; max-width:120px; object-fit:contain; filter:brightness(0) invert(1); opacity:0.6; transition:opacity 0.2s;">
+    </div>
+    <div class="client-cell">
+    <img src="imagenes/CLIENTES/renova.png" alt="Cliente F" style="max-height:60px; max-width:130px; object-fit:contain; filter:brightness(0) invert(1); opacity:0.6; transition:opacity 0.2s;">
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div style="max-width: 560px;">
+    <p class="section-label">Cómo trabajamos</p>
+    <h2 class="section-title">Nuestro proceso</h2>
+    <p class="section-sub">Cada proyecto sigue un camino claro. Sin sorpresas, con resultados.</p>
+  </div>
+
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num">01 ——</div>
+      <div class="step-body">
+        <h3 class="step-title">Descubrimiento</h3>
+        <p class="step-desc">Entendemos tu negocio, tu audiencia y tus objetivos. Investigamos el mercado y definimos el punto de partida estratégico.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02 ——</div>
+      <div class="step-body">
+        <h3 class="step-title">Estrategia</h3>
+        <p class="step-desc">Definimos el posicionamiento, la voz de marca y los lineamientos creativos que guiarán todas las decisiones de diseño.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03 ——</div>
+      <div class="step-body">
+        <h3 class="step-title">Diseño &amp; Creación</h3>
+        <p class="step-desc">Aquí ocurre la magia. Exploramos, iteramos y refinamos hasta encontrar la solución que representa perfectamente tu marca.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04 ——</div>
+      <div class="step-body">
+        <h3 class="step-title">Entrega &amp; Lanzamiento</h3>
+        <p class="step-desc">Te entregamos todo lo necesario para salir al mundo. Archivos, guías de uso y soporte para implementar correctamente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contact-info">
+    <p class="section-label">Hablemos</p>
+    <h2 class="contact-headline">¿Listo para<br><em>construir</em><br>algo grande?</h2>
+    <p class="section-sub">Cuéntanos tu proyecto y en menos de 24 horas te respondemos con ideas y un plan de acción.</p>
+
+    <div class="contact-details">
+      <div class="contact-item">
+        <span class="contact-item-label">Email</span>
+        <span class="contact-item-val">novastdo.co+info@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Instagram</span>
+        <span class="contact-item-val">@novastdo.co</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">whastapp</span>
+        <span class="contact-item-val">+57 300 257 9355</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Ciudad</span>
+        <span class="contact-item-val">Barranquilla, Colombia<br></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <div class="form-field">
+      <label>Tu nombre</label>
+      <input id="cf-nombre" type="text" placeholder="¿Cómo te llamas?">
+    </div>
+    <div class="form-field">
+      <label>Correo electrónico</label>
+      <input id="cf-correo" type="email" placeholder="tu@correo.com">
+    </div>
+    <div class="form-field">
+      <label>Tipo de proyecto</label>
+      <select id="cf-servicio">
+        <option value="">Selecciona un servicio</option>
+        <option>Branding &amp; Identidad</option>
+        <option>Diseño Web &amp; Digital</option>
+        <option>Estrategia de Marca</option>
+        <option>Contenido Visual</option>
+        <option>Cubrimiento de Eventos</option>
+        <option>Proyecto completo</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>Cuéntanos tu proyecto</label>
+      <textarea id="cf-mensaje" placeholder="¿Qué tienes en mente? Cuéntanos sobre tu negocio, tus objetivos y qué esperas lograr..."></textarea>
+    </div>
+
+    <!-- Feedback messages -->
+    <div id="cf-success" style="display:none; background: rgba(242,146,6,0.12); border: 1px solid var(--gold); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 1rem; color: var(--gold); font-size: 0.88rem; letter-spacing: 0.04em; font-weight: 500;">
+      ✓ &nbsp;¡Mensaje enviado! Te contactamos en menos de 24 horas.
+    </div>
+    <div id="cf-error" style="display:none; background: rgba(220,50,50,0.10); border: 1px solid rgba(220,50,50,0.4); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 1rem; color: #f87171; font-size: 0.88rem; letter-spacing: 0.04em; font-weight: 500;">
+      ✕ &nbsp;Hubo un error al enviar. Intenta de nuevo o escríbenos directamente.
+    </div>
+
+    <button id="cf-btn" class="btn-primary" style="width: 100%;" onclick="enviarFormulario()">Enviar mensaje →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NOVA<span> · </span>STUDIO</div>
+  <p class="footer-copy">© 2025 Nova Studio. Todos los derechos reservados.</p>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/novastdo.co/" target="_blank">Instagram</a>
+    <a href="https://+573002579355" target="_blank">WhatsApp</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</footer>
+
+<script>
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.borderBottomColor = window.scrollY > 60
+      ? 'rgba(254,253,253,0.16)'
+      : 'rgba(254,253,253,0.10)';
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.service-card, .portfolio-item, .process-step, .stat-block, .client-cell').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = `opacity 0.55s ease ${i * 0.06}s, transform 0.55s ease ${i * 0.06}s`;
+    observer.observe(el);
+  });
+
+  const toggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  function closeMenu() {
+    navLinks.classList.remove('nav-open');
+  }
+
+  toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('nav-open');
+  });
+
+  // Cerrar menú al hacer click en cualquier enlace
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Smooth scroll — se ejecuta después de cerrar el menú
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        closeMenu();
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    });
+  });
+// ── Video hero: play/pause según visibilidad ──────────────────────
+const heroVideo = document.querySelector('.hero-media video');
+if (heroVideo) {
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        heroVideo.play();
+      } else {
+        heroVideo.pause();
+      }
+    });
+  }, { threshold: 0.3 }); // 0.3 = se activa cuando el 30% del hero es visible
+
+  videoObserver.observe(document.querySelector('.hero-media'));
+}
+  // ── Google Sheets integration ──────────────────────────────────────
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyaeaMv3EVKiTNLiFeXFcLUa3aHU5YO_AVIlgEJLNOzPIcQQQOpBsCYCZoCl__A6e-xnw/exec';
+
+  async function enviarFormulario() {
+    const nombre   = document.getElementById('cf-nombre').value.trim();
+    const correo   = document.getElementById('cf-correo').value.trim();
+    const servicio = document.getElementById('cf-servicio').value;
+    const mensaje  = document.getElementById('cf-mensaje').value.trim();
+    const btn      = document.getElementById('cf-btn');
+    const success  = document.getElementById('cf-success');
+    const error    = document.getElementById('cf-error');
+
+    // Basic validation
+    if (!nombre || !correo || !servicio || !mensaje) {
+      error.textContent = '✕  Por favor completa todos los campos antes de enviar.';
+      error.style.display = 'block';
+      success.style.display = 'none';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+      error.textContent = '✕  El correo electrónico no es válido.';
+      error.style.display = 'block';
+      success.style.display = 'none';
+      return;
+    }
+
+    // Loading state
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    btn.style.opacity = '0.7';
+    error.style.display = 'none';
+    success.style.display = 'none';
+
+    try {
+      const res = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',   // Apps Script requires no-cors
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, correo, servicio, mensaje })
+      });
+
+      // no-cors returns opaque response → assume success if no exception
+      success.style.display = 'block';
+      document.getElementById('cf-nombre').value   = '';
+      document.getElementById('cf-correo').value   = '';
+      document.getElementById('cf-servicio').value = '';
+      document.getElementById('cf-mensaje').value  = '';
+
+    } catch (err) {
+      error.textContent = '✕  Hubo un error al enviar. Intenta de nuevo o escríbenos directamente.';
+      error.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Enviar mensaje →';
+      btn.style.opacity = '1';
+    }
+  }
+</script>
+</body>
+</html>
